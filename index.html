@@ -277,9 +277,91 @@
     <!-- Projects Section -->
     <section id="projects" class="projects section">
         <div class="container">
-            <h2 class="section-title">Key Projects</h2>
+            <h2 class="section-title">Portfolio</h2>
+
+            <!-- ============================================
+                 HERO FEATURED PROJECT - Interactive Demo
+                 ============================================ -->
+            <!-- Featured Project Hero Section -->
+            <div class="featured-project-hero" data-project-type="interactive">
+                <div class="featured-project-content">
+                    <div class="featured-project-text">
+                        <div class="featured-badge">
+                            <i class="fas fa-star"></i>
+                            <span>Featured Project</span>
+                        </div>
+                        <h3 class="featured-project-title">Customer Churn Prediction & Explainability Dashboard</h3>
+                        <p class="featured-project-subtitle">Interactive ML application with SHAP explainability</p>
+                        <p class="featured-project-description">
+                            End-to-end churn prediction with interactive dashboard showcasing model performance,
+                            feature importance, and real-time customer risk scoring.
+                        </p>
+                        <div class="featured-tech-stack">
+                            <span class="tech-item">Python</span>
+                            <span class="tech-separator">•</span>
+                            <span class="tech-item">XGBoost</span>
+                            <span class="tech-separator">•</span>
+                            <span class="tech-item">SHAP</span>
+                            <span class="tech-separator">•</span>
+                            <span class="tech-item">Streamlit</span>
+                            <span class="tech-separator">•</span>
+                            <span class="tech-item">Plotly</span>
+                        </div>
+                        <div class="featured-project-buttons">
+                            <!-- TODO: Replace '#' with your actual deployed demo URL -->
+                            <a href="#" class="btn btn-featured-primary" target="_blank" rel="noopener noreferrer" aria-label="View live demo of Customer Churn Prediction Dashboard">
+                                <i class="fas fa-external-link-alt"></i> View Live Demo
+                            </a>
+                            <a href="https://github.com/noahgallagher1/customer-churn-ml-explainability" class="btn btn-featured-secondary" target="_blank" rel="noopener noreferrer" aria-label="View source code on GitHub">
+                                <i class="fab fa-github"></i> View Code
+                            </a>
+                        </div>
+                    </div>
+                    <div class="featured-project-image">
+                        <!-- TODO: Replace this placeholder with your actual dashboard screenshot -->
+                        <!-- Recommended size: 1200x600px -->
+                        <!-- To update: Save your screenshot as 'assets/dashboard-screenshot.png' and update the src below -->
+                        <img src="assets/dashboard-placeholder.svg" alt="Customer Churn Prediction Dashboard Preview" class="dashboard-preview">
+                        <div class="image-overlay">
+                            <i class="fas fa-chart-bar"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================
+                 PROJECT FILTER TABS
+                 ============================================ -->
+            <div class="project-filters">
+                <button class="filter-btn active" data-filter="all" aria-label="Show all projects">
+                    <i class="fas fa-th"></i> All
+                </button>
+                <button class="filter-btn" data-filter="interactive" aria-label="Show interactive demos">
+                    <i class="fas fa-play-circle"></i> Interactive Demos
+                </button>
+                <button class="filter-btn" data-filter="enterprise" aria-label="Show enterprise work">
+                    <i class="fas fa-briefcase"></i> Enterprise Work
+                </button>
+                <button class="filter-btn" data-filter="code" aria-label="Show code samples">
+                    <i class="fas fa-code"></i> Code Samples
+                </button>
+            </div>
+
+            <!-- ============================================
+                 ENTERPRISE DATA SCIENCE WORK SECTION
+                 ============================================ -->
+            <div class="enterprise-header">
+                <h3>Enterprise Data Science Work</h3>
+                <p>Case studies from my work at City National Bank, where I built ML models and GenAI solutions for risk analytics. Code is proprietary, but I've documented the approach and business impact.</p>
+            </div>
+
+            <!-- Enterprise Projects Grid -->
             <div class="projects-grid">
-                <div class="project-card">
+                <!-- Enterprise Project 1: GenAI Analytics -->
+                <div class="project-card enterprise-card" data-project-type="enterprise">
+                    <div class="project-badge">
+                        💼 Enterprise Project
+                    </div>
                     <div class="project-icon">
                         <i class="fas fa-robot"></i>
                     </div>
@@ -308,12 +390,16 @@
                         <span class="tag">Python</span>
                         <span class="tag">Snowflake</span>
                     </div>
-                    <a href="https://github.com/noahgallagher1" class="project-link" target="_blank">
-                        <i class="fab fa-github"></i> View on GitHub
+                    <a href="#genai-case-study" class="project-link case-study-link" aria-label="Read GenAI Analytics case study">
+                        <i class="fas fa-book-open"></i> Read Case Study
                     </a>
                 </div>
 
-                <div class="project-card">
+                <!-- Enterprise Project 2: Operational Forecasting -->
+                <div class="project-card enterprise-card" data-project-type="enterprise">
+                    <div class="project-badge">
+                        💼 Enterprise Project
+                    </div>
                     <div class="project-icon">
                         <i class="fas fa-chart-line"></i>
                     </div>
@@ -342,12 +428,16 @@
                         <span class="tag">Time Series</span>
                         <span class="tag">Tableau</span>
                     </div>
-                    <a href="https://github.com/noahgallagher1" class="project-link" target="_blank">
-                        <i class="fab fa-github"></i> View on GitHub
+                    <a href="#forecasting-case-study" class="project-link case-study-link" aria-label="Read Operational Forecasting case study">
+                        <i class="fas fa-book-open"></i> Read Case Study
                     </a>
                 </div>
 
-                <div class="project-card">
+                <!-- Enterprise Project 3: Control Testing -->
+                <div class="project-card enterprise-card" data-project-type="enterprise">
+                    <div class="project-badge">
+                        💼 Enterprise Project
+                    </div>
                     <div class="project-icon">
                         <i class="fas fa-shield-alt"></i>
                     </div>
@@ -375,14 +465,51 @@
                         <span class="tag">Hypothesis Testing</span>
                         <span class="tag">Risk Analytics</span>
                     </div>
-                    <a href="https://github.com/noahgallagher1" class="project-link" target="_blank">
-                        <i class="fab fa-github"></i> View on GitHub
+                    <a href="#control-testing-case-study" class="project-link case-study-link" aria-label="Read Control Testing case study">
+                        <i class="fas fa-book-open"></i> Read Case Study
                     </a>
                 </div>
+
+                <!-- ============================================
+                     COMING SOON PLACEHOLDER CARDS
+                     ============================================ -->
+                <!-- Coming Soon Card 1 -->
+                <div class="project-card coming-soon-card" data-project-type="code">
+                    <div class="coming-soon-content">
+                        <div class="coming-soon-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h3>More Projects Coming Soon</h3>
+                        <p>Additional interactive ML demos and code examples</p>
+                        <div class="coming-soon-tags">
+                            <span class="tag-outline">NLP</span>
+                            <span class="tag-outline">Computer Vision</span>
+                            <span class="tag-outline">Deep Learning</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Coming Soon Card 2 -->
+                <div class="project-card coming-soon-card" data-project-type="code">
+                    <div class="coming-soon-content">
+                        <div class="coming-soon-icon">
+                            <i class="fas fa-flask"></i>
+                        </div>
+                        <h3>Experimental Projects</h3>
+                        <p>Exploring cutting-edge ML techniques and GenAI applications</p>
+                        <div class="coming-soon-tags">
+                            <span class="tag-outline">LLM Fine-tuning</span>
+                            <span class="tag-outline">RAG Systems</span>
+                            <span class="tag-outline">MLOps</span>
+                        </div>
+                    </div>
+                </div>
             </div>
+
+            <!-- GitHub CTA -->
             <div class="github-cta">
                 <p>Want to see more of my work?</p>
-                <a href="https://github.com/noahgallagher1" class="btn btn-primary" target="_blank">
+                <a href="https://github.com/noahgallagher1" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
                     <i class="fab fa-github"></i> Visit My GitHub Profile
                 </a>
             </div>
