@@ -420,6 +420,166 @@ document.querySelectorAll('a, button').forEach(element => {
     });
 });
 
+// ===========================
+// Project Filter Functionality
+// ===========================
+document.addEventListener('DOMContentLoaded', () => {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const projectCards = document.querySelectorAll('.project-card[data-project-type]');
+    const featuredProject = document.querySelector('.featured-project-hero[data-project-type]');
+    const enterpriseHeader = document.querySelector('.enterprise-header');
+
+    // Initialize filter functionality
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const filter = button.getAttribute('data-filter');
+
+            // Update active button state
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+
+            // Filter projects with smooth animation
+            filterProjects(filter);
+        });
+    });
+
+    function filterProjects(filter) {
+        // Handle "All" filter
+        if (filter === 'all') {
+            // Show featured project
+            if (featuredProject) {
+                featuredProject.classList.remove('hidden');
+                setTimeout(() => {
+                    featuredProject.style.opacity = '1';
+                }, 10);
+            }
+
+            // Show enterprise header
+            if (enterpriseHeader) {
+                enterpriseHeader.classList.remove('hidden');
+                setTimeout(() => {
+                    enterpriseHeader.style.opacity = '1';
+                }, 10);
+            }
+
+            // Show all project cards
+            projectCards.forEach((card, index) => {
+                card.classList.remove('hidden');
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                }, index * 50);
+            });
+            return;
+        }
+
+        // Handle specific filters
+        // Featured project (interactive demos)
+        if (featuredProject) {
+            const projectType = featuredProject.getAttribute('data-project-type');
+            if (filter === 'interactive' || filter === 'code') {
+                // Show for both interactive and code filters
+                featuredProject.classList.remove('hidden');
+                setTimeout(() => {
+                    featuredProject.style.opacity = '1';
+                }, 10);
+            } else {
+                featuredProject.style.opacity = '0';
+                setTimeout(() => {
+                    featuredProject.classList.add('hidden');
+                }, 300);
+            }
+        }
+
+        // Enterprise header (only show for enterprise filter)
+        if (enterpriseHeader) {
+            if (filter === 'enterprise') {
+                enterpriseHeader.classList.remove('hidden');
+                setTimeout(() => {
+                    enterpriseHeader.style.opacity = '1';
+                }, 10);
+            } else {
+                enterpriseHeader.style.opacity = '0';
+                setTimeout(() => {
+                    enterpriseHeader.classList.add('hidden');
+                }, 300);
+            }
+        }
+
+        // Filter project cards
+        projectCards.forEach((card, index) => {
+            const projectType = card.getAttribute('data-project-type');
+
+            if (projectType === filter) {
+                card.classList.remove('hidden');
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                }, index * 50);
+            } else {
+                card.style.opacity = '0';
+                setTimeout(() => {
+                    card.classList.add('hidden');
+                }, 300);
+            }
+        });
+    }
+
+    // Initialize with all projects visible
+    filterProjects('all');
+});
+
+// ===========================
+// Featured Project Animation on Scroll
+// ===========================
+const featuredProjectObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+        }
+    });
+}, { threshold: 0.2 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const featuredProject = document.querySelector('.featured-project-hero');
+    if (featuredProject) {
+        featuredProject.style.opacity = '0';
+        featuredProject.style.transform = 'translateY(30px)';
+        featuredProject.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        featuredProjectObserver.observe(featuredProject);
+    }
+
+    // Animate filter buttons on load
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    filterButtons.forEach((btn, index) => {
+        btn.style.opacity = '0';
+        btn.style.transform = 'translateY(20px)';
+        setTimeout(() => {
+            btn.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+            btn.style.opacity = '1';
+            btn.style.transform = 'translateY(0)';
+        }, 100 + (index * 100));
+    });
+
+    // Animate enterprise header
+    const enterpriseHeader = document.querySelector('.enterprise-header');
+    if (enterpriseHeader) {
+        enterpriseHeader.style.opacity = '0';
+        enterpriseHeader.style.transform = 'translateY(20px)';
+        enterpriseHeader.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+
+        const headerObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.2 });
+
+        headerObserver.observe(enterpriseHeader);
+    }
+});
+
 console.log('%c👋 Hi there! Thanks for checking out my portfolio!', 'color: #667eea; font-size: 20px; font-weight: bold;');
 console.log('%cBuilt with HTML, CSS, and JavaScript', 'color: #764ba2; font-size: 14px;');
 console.log('%cFeel free to reach out: noahgallagher1@gmail.com', 'color: #667eea; font-size: 14px;');
