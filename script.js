@@ -426,7 +426,7 @@ document.querySelectorAll('a, button').forEach(element => {
 document.addEventListener('DOMContentLoaded', () => {
     const filterButtons = document.querySelectorAll('.filter-btn');
     const projectCards = document.querySelectorAll('.project-card[data-project-type]');
-    const featuredProject = document.querySelector('.featured-project-hero[data-project-type]');
+    const featuredProjects = document.querySelectorAll('.featured-project-hero[data-project-type]');
     const enterpriseHeader = document.querySelector('.enterprise-header');
 
     // Initialize filter functionality
@@ -446,13 +446,13 @@ document.addEventListener('DOMContentLoaded', () => {
     function filterProjects(filter) {
         // Handle "All" filter
         if (filter === 'all') {
-            // Show featured project
-            if (featuredProject) {
-                featuredProject.classList.remove('hidden');
+            // Show all featured projects
+            featuredProjects.forEach((project, index) => {
+                project.classList.remove('hidden');
                 setTimeout(() => {
-                    featuredProject.style.opacity = '1';
-                }, 10);
-            }
+                    project.style.opacity = '1';
+                }, index * 50);
+            });
 
             // Show enterprise header
             if (enterpriseHeader) {
@@ -473,22 +473,22 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // Handle specific filters
-        // Featured project (interactive demos)
-        if (featuredProject) {
-            const projectType = featuredProject.getAttribute('data-project-type');
-            if (filter === 'interactive' || filter === 'code') {
-                // Show for both interactive and code filters
-                featuredProject.classList.remove('hidden');
+        // Featured projects (interactive demos)
+        featuredProjects.forEach((project, index) => {
+            const projectType = project.getAttribute('data-project-type');
+            if (projectType === filter || (filter === 'code' && projectType === 'interactive')) {
+                // Show for matching filter or code filter (interactive projects have code)
+                project.classList.remove('hidden');
                 setTimeout(() => {
-                    featuredProject.style.opacity = '1';
-                }, 10);
+                    project.style.opacity = '1';
+                }, index * 100);
             } else {
-                featuredProject.style.opacity = '0';
+                project.style.opacity = '0';
                 setTimeout(() => {
-                    featuredProject.classList.add('hidden');
+                    project.classList.add('hidden');
                 }, 300);
             }
-        }
+        });
 
         // Enterprise header (only show for enterprise filter)
         if (enterpriseHeader) {
@@ -528,7 +528,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ===========================
-// Featured Project Animation on Scroll
+// Featured Projects Animation on Scroll
 // ===========================
 const featuredProjectObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -540,13 +540,13 @@ const featuredProjectObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.2 });
 
 document.addEventListener('DOMContentLoaded', () => {
-    const featuredProject = document.querySelector('.featured-project-hero');
-    if (featuredProject) {
-        featuredProject.style.opacity = '0';
-        featuredProject.style.transform = 'translateY(30px)';
-        featuredProject.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        featuredProjectObserver.observe(featuredProject);
-    }
+    const allFeaturedProjects = document.querySelectorAll('.featured-project-hero');
+    allFeaturedProjects.forEach(project => {
+        project.style.opacity = '0';
+        project.style.transform = 'translateY(30px)';
+        project.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        featuredProjectObserver.observe(project);
+    });
 
     // Animate filter buttons on load
     const filterButtons = document.querySelectorAll('.filter-btn');
