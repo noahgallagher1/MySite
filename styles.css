@@ -466,6 +466,9 @@ body {
 .skill-tag.highlight {
     background: var(--gradient-2);
     color: white;
+    -webkit-text-fill-color: white;
+    background-clip: padding-box;
+    -webkit-background-clip: padding-box;
 }
 
 .skill-tag:hover {
